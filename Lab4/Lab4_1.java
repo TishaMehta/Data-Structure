@@ -59,9 +59,10 @@ class Lab4_1{
 		Scanner sc= new Scanner(System.in);
 		boolean flag=true;
 		while(flag){
+			System.out.println("operation");
 			int y=sc.nextInt();
+
 			switch(y){
-				System.out.println("opertaion")
 			case 1:
 				System.out.println("entre element");
 				t.push(sc.nextInt());
