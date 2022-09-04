@@ -1,10 +1,8 @@
 import java.util.Scanner;
-class EvaluationPostfix{
+class EvaluationPrefix{
 	int top=-1;
+	int value;
 	int s[]=new int[100];
-	int value=0;
-
-	
 	public void push(int c){
 		if(top>=100){
 			System.out.println("stack overflow");
@@ -13,7 +11,6 @@ class EvaluationPostfix{
 			top++;
 			s[top]=c;
 		}
-
 	}
 	public int pop(){
 		if(top<0){
@@ -25,44 +22,42 @@ class EvaluationPostfix{
 			return s[top+1];
 		}
 	}
-	public int operation(int op2, int op1, char y){
+	public int operation(int op1,int op2,char y){
 		if(y=='+'){
-			return (op1+op2);
+			return(op1+op2);
 		}
 		else if(y=='-'){
-			return (op1-op2);
+			return(op1-op2);
 		}
 		else if(y=='*'){
-			return (op1*op2);
+			return(op1*op2);
 		}
 		else if(y=='/'){
-			return (op1/op2);
+			return(op1/op2);
 		}
 		else{
-			return(op1^op2);
+			return ((int)Math.pow(op2,op1));
 		}
 	}
 	public void evalution(String str){
-		for(int i=0;i<str.length();i++){
-			
+		for(int i=str.length()-1;i>=0;i--){
 			boolean flag=Character.isDigit(str.charAt(i));
 			if(flag){
-			push(Character.getNumericValue(str.charAt(i)));
+				push(Character.getNumericValue(str.charAt(i)));
 			}
 			else{
 				value=operation(pop(),pop(),str.charAt(i));
-				push(value);
 			}
 		}
 		System.out.println("ans:"+value);
 	}
 }
-public class Lab6_1{
+public class Lab6_2{
 	public static void main(String[] args) {
 		Scanner sc=new Scanner(System.in);
-		System.out.println("enter expression:");
+		System.out.println("entre expression:");
 		String expression=sc.nextLine();
-		EvaluationPostfix ep=new EvaluationPostfix();
+		EvaluationPrefix ep=new EvaluationPrefix();
 		ep.evalution(expression);
 	}
 }
